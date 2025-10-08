@@ -72,6 +72,13 @@ input::placeholder {
 }
 
 .weather-box .weather-icon {
-  width: 64px;
-  height: 64px;
+  width: 40px;
+  height: 40px;
+}
+.weather-box {
+  justify-content: center;
+  display: flex;
+
+  gap: 50px;
+  /* padding-top: 50px; */
 }

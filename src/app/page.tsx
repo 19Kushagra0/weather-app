@@ -52,22 +52,28 @@ export default function Home() {
           </div>
 
           <div className="weather-box">
-            <h2 className="location">{cityName}</h2>
-            <div className="temperature">
-              {temperature !== null
-                ? `${temperature}°C`
-                : cityName === "Not a real city"
-                ? "Not a real city"
-                : ""}
+            <div className="leftBox">
+              {" "}
+              <h2 className="location">{cityName}</h2>
+              <div className="temperature">
+                {temperature !== null
+                  ? `${temperature}°C`
+                  : cityName === "Not a real city"
+                  ? "Not a real city"
+                  : ""}
+              </div>
             </div>
-            <div className="condition">{condition}</div>
-            {weatherIcon && (
-              <img
-                src={weatherIcon}
-                alt="Weather Icon"
-                className="weather-icon"
-              />
-            )}
+            <div className="rightBox">
+              {" "}
+              <div className="condition">{condition}</div>
+              {weatherIcon && (
+                <img
+                  src={weatherIcon}
+                  alt="Weather Icon"
+                  className="weather-icon"
+                />
+              )}
+            </div>
           </div>
         </div>
       </div>
