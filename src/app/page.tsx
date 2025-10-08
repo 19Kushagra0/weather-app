@@ -4,40 +4,43 @@ import "./page.css";
 
 export default function Home() {
   const [inputValue, setInputValue] = useState("");
-  const [temperature, setTemperature] = useState(null);
+  const [temperature, setTemperature] = useState<number | null>(null);
   const [cityName, setCityName] = useState<string | null>(null);
-  const [condition, setCondition] = useState(null);
-  const [weatherIcon, setWeatherIcon] = useState(null);
+  const [condition, setCondition] = useState<string | null>(null);
+  const [weatherIcon, setWeatherIcon] = useState<string | null>(null);
 
-  const inputHandler = (e) => {
-    // console.log(e.target.value);
+  const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
-  const searchButton = () => {
-    console.log(inputValue);
 
+  const searchButton = () => {
     const apiKey = "e536af1685564a2eae1113933250810";
     const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${inputValue}`;
 
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        setTemperature(data.current.temp_c); // temperature
-        setCondition(data.current.condition.text); // condition text
-        setWeatherIcon(data.current.condition.icon); // weather icon URL
-        setCityName(`${data.location.name}, ${data.location.country}`); // official city name
+        if (data && data.current) {
+          setTemperature(data.current.temp_c);
+          setCondition(data.current.condition.text);
+          setWeatherIcon(data.current.condition.icon);
+          setCityName(`${data.location.name}, ${data.location.country}`);
+        } else {
+          setTemperature(null);
+          setCondition(null);
+          setWeatherIcon(null);
+          setCityName("Not a real city");
+        }
       });
 
-    console.log(temperature);
-    setCityName(inputValue);
     setInputValue("");
   };
+
   return (
     <div className="app">
       <div className="weather-app">
         <div className="nature-card">
           <div className="search-box">
-            {/* input */}
             <input
               onChange={inputHandler}
               value={inputValue}
@@ -49,13 +52,15 @@ export default function Home() {
           </div>
 
           <div className="weather-box">
-            {/* Location */}
             <h2 className="location">{cityName}</h2>
-            {/* Temprature */}
-            <div className="temperature">{temperature}</div>
-            {/* Condition */}
+            <div className="temperature">
+              {temperature !== null
+                ? `${temperature}°C`
+                : cityName === "Not a real city"
+                ? "Not a real city"
+                : ""}
+            </div>
             <div className="condition">{condition}</div>
-            {/* Image */}
             {weatherIcon && (
               <img
                 src={weatherIcon}
