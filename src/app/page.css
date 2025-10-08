@@ -1,0 +1,77 @@
+body {
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f6f7f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: #222;
+}
+
+.weather-app {
+  width: 100%;
+  padding: 1.5rem;
+}
+
+.nature-card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid #e5e5e5;
+}
+
+.search-box {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.city-name {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+
+  background-color: gray;
+
+  color: white;
+}
+
+input::placeholder {
+  color: white;
+}
+.search-box button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: #13a4ec;
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.weather-box .location {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.weather-box .temperature {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0.25rem 0;
+}
+
+.weather-box .condition {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.weather-box .weather-icon {
+  width: 64px;
+  height: 64px;
+}
